@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNet.Identity
+@model String
+
+@if (Request.IsAuthenticated)
+{
+
+    @*using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()*@
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+
+            @Html.ActionLink(User.Identity.GetUserName() + " | " + Model,
+                "Index", "User", routeValues: null, htmlAttributes: new { @class = "dsfdsfcsdc" })
+        </li>
+        @*<li></li>*@
+        <li> @Html.ActionLink("Выход", "Logout", "Account", routeValues: null, htmlAttributes: new { @class = "dsfdsfcsdc" })</li>
+    </ul>
+    //}
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Регестрация", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Вход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

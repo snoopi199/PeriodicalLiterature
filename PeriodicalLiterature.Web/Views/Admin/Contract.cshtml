@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Contract>
+@using PeriodicalLiterature.Models.Entity
+@{
+    ViewBag.Title = "Contract";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@foreach (var contract in Model)
+{
+    <div><a href="#">@contract.Id</a> <p>@contract.TitleEdition</p></div>
+    <hr />
+
+
+}
+

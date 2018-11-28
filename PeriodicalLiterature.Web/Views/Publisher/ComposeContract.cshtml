@@ -1,0 +1,117 @@
+﻿@model PeriodicalLiterature.Models.ContractView
+
+
+@{
+    ViewBag.Title = "ComposeContract";
+    Layout = "~/Views/Shared/_LayoutPublisher.cshtml";
+}
+
+<h2>Оформить контракт</h2>
+
+@using (Html.BeginForm("ComposeContract", "Publisher", FormMethod.Post, new {enctype="multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+  
+
+    @*@Html.HiddenFor(model => model.Id< new { value = Guid.NewGuid() } )
+
+    @Html.HiddenFor(model => model.PublisherId, new { value = User.Identity.GetUserId() } )*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TitleEdition, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TitleEdition, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TitleEdition, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">           
+            @Html.DropDownListFor(model => model.Category, new SelectList(new[] { "Газета", "Журнал" }), 
+           new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Language, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Language, new SelectList(new[] { "Русский", "Українська", "English" }), 
+           new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Language, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.ListBoxFor(model => model.Genre,
+     new MultiSelectList(new[] { "Бизнес", "В мире", "Дом", "Женщинам", "Мужчинам", "Технологии", "Увлечения" }),
+     new { @class = "form-control " })
+           
+           
+            
+            @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Periodical, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Periodical,
+           new SelectList(new[] { "Ежедневно", "Еженедельно", "Ежеквартально", "Раз в пол года", "Ежегодно" }),
+           new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Periodical, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PriceForNewRelease, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PriceForNewRelease, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PriceForNewRelease, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DescriptionEdition, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.TextAreaFor(model => model.DescriptionEdition, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DescriptionEdition, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cover, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-offset-2 col-md-10">
+            <input type="file" name="Cover"class=" form-control-file " />
+            @Html.ValidationMessageFor(model => model.Cover, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.File, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-offset-2 col-md-10">
+            <input type="file" name="File" class="form-control-file " />
+            @Html.ValidationMessageFor(model => model.File, "", new { @class = "text-danger" })
+        </div>
+       
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Оформить" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+
